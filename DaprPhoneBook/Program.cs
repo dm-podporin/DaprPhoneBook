@@ -1,7 +1,8 @@
+using Manager.Models;
+using Manager.Service;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
-string connectionString = "mongodb://localhost:27017";
 
 // Add services to the container.
 
@@ -11,7 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IMongoClient>(new MongoClient(connectionString));
+builder.Services.AddSingleton<MongoDbContext>();
+
+builder.Services.AddScoped<PhoneBookServices>();
 
 builder.Services.AddControllers().AddDapr();
 
@@ -24,10 +27,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCloudEvents();
+
 app.MapControllers();
+app.MapSubscribeHandler();
 
 app.Run();

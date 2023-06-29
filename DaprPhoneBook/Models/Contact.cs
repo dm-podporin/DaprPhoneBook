@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson;
+using System.ComponentModel.DataAnnotations;
 
 namespace DaprPhoneBook.Models
 {
     public record Contact
     {
+
+        public ObjectId? Id { get; set; }
+
         [Required(ErrorMessage = "Name cannot be null or empty.")]
         public required string Name { get; set; }
 

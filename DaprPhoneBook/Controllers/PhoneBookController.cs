@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using DaprPhoneBook.Models;
+using Manager.Models;
+using Manager.Service;
 
 namespace DaprPhoneBook.Controllers
 {
@@ -8,35 +10,39 @@ namespace DaprPhoneBook.Controllers
     [Route("api/[controller]")]
     public class PhoneBookController : ControllerBase
     {
-        private readonly IMongoClient _mongoClient;
+        private readonly PhoneBookServices _phoneBookServices;
 
-        public PhoneBookController(IMongoClient mongoClient)
+        public PhoneBookController(
+            PhoneBookServices phoneBookServices)
         {
-            _mongoClient = mongoClient;
+            _phoneBookServices = phoneBookServices;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Contact>> GetContacts()
-        {
-            var database = _mongoClient.GetDatabase("PhoneBook"); 
-            var collection = database.GetCollection<Contact>("PhoneBook"); 
-
-            var contacts = collection.Find(contact => true).ToList();
-
-            return Ok(contacts);
-        }
-
-        [HttpPost]
-        public ActionResult<Contact> CreateContact([FromBody] Contact contact)
+        public async Task<ActionResult<List<Contact>>> GetContacts()
         {
             try
             {
-                var database = _mongoClient.GetDatabase("PhoneBook");
-                var collection = database.GetCollection<Contact>("PhoneBook");
 
-                collection.InsertOne(contact);
+                var result = await _phoneBookServices.GetContact();
 
-                return Ok();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Contact>> CreateContact(Contact contact)
+        {
+            try
+            {
+
+                var result = await _phoneBookServices.CreateContact(contact);
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
