@@ -5,7 +5,7 @@ using Accessor.Services;
 namespace Manager.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PhoneBookController : ControllerBase
     {
         private readonly ILogger<PhoneBookController> _logger;
