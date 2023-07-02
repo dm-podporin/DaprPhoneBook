@@ -1,15 +1,48 @@
 version: '3.4'
 
 services:
+
+# Side services
+
+  rabbitmq:
+    image: "rabbitmq:3-management-alpine"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - phonebook
+  
+  mongodb:
+    image: mongo
+    ports:
+      - 27018:27017
+    networks:
+      - phonebook 
+
+# Manager vs Dapr
+
   manager:
     image: ${DOCKER_REGISTRY-}manager
     build:
       context: .
-      dockerfile: Manager/Dockerfile
+      dockerfile: Manager/Dockerfile    
+    depends_on:
+      - rabbitmq
+    networks:
+      - phonebook
+
+# Accessor vs Dapr
 
   accessor:
     image: ${DOCKER_REGISTRY-}accessor
     build:
       context: .
       dockerfile: Accessor/Dockerfile
+    depends_on:
+      - rabbitmq
+    networks:
+      - phonebook
+
+networks:
+    phonebook:
 
