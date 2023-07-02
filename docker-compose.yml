@@ -28,8 +28,28 @@ services:
       dockerfile: Manager/Dockerfile    
     depends_on:
       - rabbitmq
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
     networks:
       - phonebook
+
+   
+  manager-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+        "-app-port", "80",
+        "-app-id", "manager",
+        "-app-protocol", "http",
+        "-dapr-http-port", "3500",
+        "-components-path", "./dapr/components",
+        "-config", "./dapr/config.yaml"
+        ]
+    volumes:
+      - "./dapr/:/dapr"
+    depends_on:
+      - manager
+    network_mode: "service:manager"
 
 # Accessor vs Dapr
 
@@ -42,6 +62,23 @@ services:
       - rabbitmq
     networks:
       - phonebook
+
+  accessor-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+        "-app-port", "80",
+        "-app-id", "accessor",
+        "-app-protocol", "http",
+        "-dapr-http-port", "3500",
+        "-components-path", "./dapr/components",
+        "-config", "./dapr/config.yaml"
+        ]
+    volumes:
+      - "./dapr/:/dapr"
+    depends_on:
+      - accessor
+    network_mode: "service:accessor"
+
 
 networks:
     phonebook:

@@ -18,8 +18,6 @@ namespace Manager.Models
 
         public IMongoCollection<Contact> PhoneBook =>
             _database.GetCollection<Contact>("PhoneBook");
-        public IMongoCollection<ContactDTO> PhoneBookPost =>
-    _database.GetCollection<ContactDTO>("PhoneBook");
     }
 }
 

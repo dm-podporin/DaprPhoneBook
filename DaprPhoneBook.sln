@@ -9,11 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accessor", "Accessor\Accessor.csproj", "{AED12504-CD0F-4481-A6CA-EC80F01313AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accessor", "Accessor\Accessor.csproj", "{AED12504-CD0F-4481-A6CA-EC80F01313AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager", "Manager\Manager.csproj", "{510855BD-AD19-42AB-89D0-07AACED9E500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manager", "Manager\Manager.csproj", "{510855BD-AD19-42AB-89D0-07AACED9E500}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8533459D-5E0F-4233-B7A8-4F45A4612B94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{F2083FA2-FF5F-490C-B996-CE09FC96B171}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\config.yaml = dapr\config.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{75A81066-0414-4E8B-8679-D486497655F5}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\phonequeue.yaml = dapr\components\phonequeue.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +46,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75A81066-0414-4E8B-8679-D486497655F5} = {F2083FA2-FF5F-490C-B996-CE09FC96B171}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F7FF84BB-604F-4FDF-90D3-26D75D1DA133}
