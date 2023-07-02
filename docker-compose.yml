@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  accessor:
+    image: ${DOCKER_REGISTRY-}accessor
+    build:
+      context: .
+      dockerfile: Accessor/Dockerfile

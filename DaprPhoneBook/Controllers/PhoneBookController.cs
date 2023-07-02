@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
-using DaprPhoneBook.Models;
-using Manager.Models;
 using Manager.Service;
+using Manager.Models;
 
-namespace DaprPhoneBook.Controllers
+namespace Manager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -35,7 +33,7 @@ namespace DaprPhoneBook.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Contact>> CreateContact(Contact contact)
+        public async Task<ActionResult<ContactDTO>> CreateContact(ContactDTO contact)
         {
             try
             {

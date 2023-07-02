@@ -1,5 +1,4 @@
-﻿using DaprPhoneBook.Models;
-using Manager.Models;
+﻿using Manager.Models;
 using MongoDB.Driver;
 
 namespace Manager.Service
@@ -28,12 +27,12 @@ namespace Manager.Service
             }
         }
 
-        public async Task<Contact> CreateContact(Contact contact)
+        public async Task<ContactDTO> CreateContact(ContactDTO contact)
         {
             try
             {
 
-                await _mongoClient.PhoneBook.InsertOneAsync(contact);
+                await _mongoClient.PhoneBookPost.InsertOneAsync(contact);
 
                 return contact;
             }
@@ -42,6 +41,5 @@ namespace Manager.Service
                 throw;
             }
         }
-
-    }
+    } 
 }

@@ -1,5 +1,4 @@
-﻿using DaprPhoneBook.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 namespace Manager.Models
@@ -19,6 +18,8 @@ namespace Manager.Models
 
         public IMongoCollection<Contact> PhoneBook =>
             _database.GetCollection<Contact>("PhoneBook");
+        public IMongoCollection<ContactDTO> PhoneBookPost =>
+    _database.GetCollection<ContactDTO>("PhoneBook");
     }
 }
 
