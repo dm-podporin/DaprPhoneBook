@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["DaprPhoneBook/Manager.csproj", "DaprPhoneBook/"]
-RUN dotnet restore "DaprPhoneBook/Manager.csproj"
+COPY ["DaprPhoneBook/Accessor.csproj", "DaprPhoneBook/"]
+RUN dotnet restore "DaprPhoneBook/Accessor.csproj"
 COPY . .
 WORKDIR "/src/DaprPhoneBook"
-RUN dotnet build "Manager.csproj" -c Release -o /app/build
+RUN dotnet build "Accessor.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Manager.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Accessor.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Manager.dll"]
+ENTRYPOINT ["dotnet", "Accessor.dll"]
