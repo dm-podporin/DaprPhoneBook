@@ -53,13 +53,13 @@ namespace Manager.Controllers
             }
         }
 
-        [HttpGet("/contact/{phone}")]
-        public async Task<ActionResult<List<Contact>>> GetContactByPhone(string phone)
+        [HttpDelete("/contact/{phone}")]
+        public async Task<ActionResult<List<Contact>>> DeleteContactByPhone(string phone)
         {
             try
             {
 
-                var result = await _phoneBookServices.GetContactByPhone(phone);
+                var result = await _phoneBookServices.DeleteContactByPhone(phone);
 
                 return Ok(result);
             }
