@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  manager:
+    image: ${DOCKER_REGISTRY-}manager
+    build:
+      context: .
+      dockerfile: Manager/Dockerfile
+
+  accessor:
+    image: ${DOCKER_REGISTRY-}accessor
+    build:
+      context: .
+      dockerfile: Accessor/Dockerfile
+
