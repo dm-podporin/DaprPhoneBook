@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
-namespace Manager.Models
+namespace Accessor.Models
 {
     public class MongoDbContext
     {

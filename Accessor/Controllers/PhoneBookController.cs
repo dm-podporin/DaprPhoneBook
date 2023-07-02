@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Manager.Service;
-using Manager.Models;
+using Accessor.Models;
 
-namespace Manager.Controllers
+namespace Accessor.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

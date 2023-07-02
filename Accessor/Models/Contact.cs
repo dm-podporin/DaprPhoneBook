@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using System.ComponentModel.DataAnnotations;
 
-namespace Manager.Models
+namespace Accessor.Models
 {
     public record Contact
     {

@@ -5,11 +5,11 @@ services:
     image: ${DOCKER_REGISTRY-}accessor
     build:
       context: .
-      dockerfile: DaprPhoneBook/Dockerfile
+      dockerfile: Accessor/Dockerfile
 
   manager:
     image: ${DOCKER_REGISTRY-}manager
     build:
       context: .
-      dockerfile: Accessor/Dockerfile
+      dockerfile: Manager/Dockerfile
 
